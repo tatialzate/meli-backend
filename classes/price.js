@@ -1,7 +1,7 @@
 class Price {
-    constructor( price ){
-        this.currency = price[0].currency_id;
-        this.amount = price[0].amount;
+    constructor( currency_id = '', amount = '' ){
+        this.currency = currency_id;
+        this.amount = amount;
         this.decimals = '';
     }
 }

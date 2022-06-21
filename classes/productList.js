@@ -1,13 +1,10 @@
 const Author = require('./author');
 const Item = require('./item');
-
-const DEFAULT_LIMIT = 4;
-
 class ProductList {
     constructor( data, limit) {
         this.author = new Author('', '');
         this.categories = this.getCategories( data.available_filters );
-        this.items = this.getProducts( data.results, limit);
+        this.items = this.getProducts( data.results );
     }
 
     getCategories = ( categories ) => {
@@ -16,10 +13,8 @@ class ProductList {
                     : [];
     }
 
-    getProducts = ( items, limit ) => {
-        //TODO: Revisar constante para parámeytro del slice
-        let productsList = items.length ? items.slice(0, parseInt( limit ) || DEFAULT_LIMIT ) : [];
-
+    getProducts = ( items ) => {
+        let productsList = items.length ? items : [];
         return productsList.map( product => new Item (product));
     }
 }
