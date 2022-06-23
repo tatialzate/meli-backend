@@ -14,32 +14,14 @@ const { PATH_URL } = process.env;
 
 const fetchProductById = async (req, res) => {
     try {
-        // let itemId = req.params.id;
-
-        // if (!itemId) {
-        //     return res.status(ERROR_CODE).json( new Error(ERROR_CODE, messages.NO_PARAM_ID))
-        // }
-        
         const productId = getProductId(req);
         const params = `items?ids=${productId}`;
         const [ product ] = await callApi(PATH_URL, params);
-
-        // if (!product) {
-        //     res.status(ERROR_CODE).json( new Error(ERROR_CODE, messages.NO_PRODUCT) )
-
-        // } else if (product.code === SUCCESS_CODE){
-        //     product.body.descriptions = await getDescription(product.body.id, PATH_URL);
-
-        //     res.status(SUCCESS_CODE).json( 
-        //         new Product(product) 
-        //     );
-        // } else {
-        //     res.status(product.code).json( new Error(product.code, product.body.error) );
-        // }
+    
         if (!product) {
             res.status(ERROR_CODE).json( new Error(ERROR_CODE, messages.NO_PRODUCT) )
         }else {
-            getProductDescription( product, res );
+            getProductDescription(product,res);
         }
 
     } catch (err) {
@@ -47,10 +29,12 @@ const fetchProductById = async (req, res) => {
     }
 }
 
+
 const getProductId = (req) => {
     let productId = req.params.id;
     return (productId || res.status(ERROR_CODE).json( new Error(ERROR_CODE, messages.NO_PARAM_ID)))
 }
+
 
 const getProductDescription = async ( product, res ) => {
     if (product.code === SUCCESS_CODE){
