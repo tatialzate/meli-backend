@@ -6,9 +6,10 @@
 const express = require('express');
 const router = express.Router();
 
-const controller = require('../controllers/products')
+const fetchProducts = require('../controllers/products.controller');
+const fetchProductsById = require('../controllers/product.controller');
 
-router.route('/').get(controller.fetchProducts)
-router.route('/:id').get(controller.fetchProductById)
+router.route('/').get(fetchProducts);
+router.route('/:id').get(fetchProductsById);
 
 module.exports = router;

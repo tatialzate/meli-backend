@@ -9,8 +9,8 @@ class ProductList {
 
     getCategories = ( categories ) => {
         return categories.length 
-                    ? categories[0].values.map( category => category.name )
-                    : [];
+            ? categories[0].values.map( category => category.name )
+            : [];
     }
 
     getProducts = ( items ) => {

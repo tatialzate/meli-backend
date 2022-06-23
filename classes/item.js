@@ -12,9 +12,9 @@ class Item {
         this.description = product.descriptions;
     }
 
-    getImage = (id) => {
-        return `https://http2.mlstatic.com/D_NQ_NP_${id}-F.webp`
-    }
+    getImage = (id) => (
+        `https://http2.mlstatic.com/D_NQ_NP_${id}-F.webp`
+    )
 }
 
 module.exports = Item;

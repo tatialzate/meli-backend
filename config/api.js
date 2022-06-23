@@ -5,5 +5,6 @@ exports.callApi = async (path, params) => {
         url: path + params,
         method: 'get',
     })
-    return data
+
+    return data;
 }
