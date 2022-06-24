@@ -19,10 +19,10 @@ const fetchProductById = async (req, res) => {
         const [ product ] = await callApi(PATH_URL, params);
     
         if (!product) {
-            res.status(ERROR_CODE).json( new Error(ERROR_CODE, messages.NO_PRODUCT) )
-        }else {
-            getProductDescription(product,res);
+            return res.status(ERROR_CODE).json( new Error(ERROR_CODE, messages.NO_PRODUCT) ) 
         }
+
+        setProductDescription(product,res);
 
     } catch (err) {
         res.status(ERROR_CODE).json( new Error(ERROR_CODE, err.message));
@@ -36,7 +36,7 @@ const getProductId = (req) => {
 }
 
 
-const getProductDescription = async ( product, res ) => {
+const setProductDescription = async ( product, res ) => {
     if (product.code === SUCCESS_CODE){
         product.body.descriptions = await getDescription(product.body.id, PATH_URL);
 
